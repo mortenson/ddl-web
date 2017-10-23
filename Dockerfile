@@ -1,7 +1,9 @@
 FROM php:7.1-apache
 # Customize container to match Drupal 8 requirements
 RUN a2enmod rewrite
-RUN apt-get update -y && apt-get install -y libpng-dev zip unzip mysql-client ssmtp mailutils libfreetype6-dev libjpeg62-turbo-dev
+RUN apt-get update -y \
+ && apt-get install -y libpng-dev zip unzip mysql-client ssmtp mailutils libfreetype6-dev libjpeg62-turbo-dev \
+ && rm -rf /var/lib/apt/lists/*
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install gd opcache pdo pdo_mysql zip bcmath exif
 RUN pecl install apcu && echo extension=apcu.so > /usr/local/etc/php/conf.d/docker-php-ext-apcu.ini
