@@ -14,6 +14,10 @@ RUN echo "mailhub=mailhog:1025" >> /etc/ssmtp/ssmtp.conf
 RUN curl -OL https://github.com/drush-ops/drush-launcher/releases/download/0.4.2/drush.phar && \
   chmod +x drush.phar && \
   mv drush.phar /usr/local/bin/drush
+# Install Drupal Console Launcher
+RUN curl https://drupalconsole.com/installer -L -o drupal.phar && \
+  chmod +x drupal.phar && \
+  mv drupal.phar /usr/local/bin/drupal
 # Add our custom configuration
 COPY php.ini /usr/local/etc/php/
 COPY apache2.conf /etc/apache2/custom.conf
