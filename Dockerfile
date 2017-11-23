@@ -7,6 +7,8 @@ RUN apt-get update -y \
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install gd opcache pdo pdo_mysql zip bcmath exif
 RUN pecl install apcu && echo extension=apcu.so > /usr/local/etc/php/conf.d/docker-php-ext-apcu.ini
+# Install XDebug
+RUN pecl install xdebug && docker-php-ext-enable xdebug
 # Configure sendmail
 RUN echo "hostname=localhost.localdomain" > /etc/ssmtp/ssmtp.conf
 RUN echo "mailhub=mailhog:1025" >> /etc/ssmtp/ssmtp.conf
