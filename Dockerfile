@@ -13,7 +13,7 @@ RUN pecl install xdebug && docker-php-ext-enable xdebug
 RUN echo "hostname=localhost.localdomain" > /etc/ssmtp/ssmtp.conf
 RUN echo "mailhub=mailhog:1025" >> /etc/ssmtp/ssmtp.conf
 # Install Drush Launcher
-RUN curl -OL https://github.com/drush-ops/drush-launcher/releases/download/0.4.2/drush.phar && \
+RUN curl -OL https://github.com/drush-ops/drush-launcher/releases/download/0.5.1/drush.phar && \
   chmod +x drush.phar && \
   mv drush.phar /usr/local/bin/drush
 # Install a fallbck version of Drush
